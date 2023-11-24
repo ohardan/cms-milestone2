@@ -1,0 +1,15 @@
+class ConferencesManager {
+    static #conferences = [];
+
+    static getConferences() {
+        return ConferencesManager.#conferences;
+    }
+
+    static addConference(conference) {
+        ConferencesManager.#conferences.push(conference);
+    }
+
+    static conferenceExists(conference_name) {
+        return ConferencesManager.#conferences.map((conf) => conf.getName).includes(conference_name);
+    }
+}
