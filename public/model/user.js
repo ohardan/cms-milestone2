@@ -1,55 +1,69 @@
-class User {
-    #name
-    #email
-    #password
+import { nanoid } from "nanoid";
 
-    constructor(name, email, password) {
-        this.setName(name);
-        this.setEmail(email);
-        this.#setPassword(password);
-    }
+export default class User {
+  #id;
+  #name;
+  #email;
+  #password;
 
-    getName() { return this.#name }
-    getEmail() { return this.#email }
+  constructor(id, name, email, password) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+  }
 
-    setName(value) {
-        if (value instanceof String) {
-            this.#name = value;
-            return true;
-        }
-        return false;
-    }
-    
-    setEmail(value) {
-        if (value instanceof String && isEmail(value)) {
-            this.#email = value;
-            return true;
-        }
-        return false;
-    }
-    
-    #setPassword(value) {
-        if (value instanceof String) {
-            this.#password = value;
-            return true;
-        }
-        return false;
-    }
+  get id() {
+    return this.#id;
+  }
+  get name() {
+    return this.#name;
+  }
+  get email() {
+    return this.#email;
+  }
+  get password() {
+    return this.#password;
+  }
 
-    isPassword(value) {
-        return this.#password === value;
+  set id(value) {
+    if (value === 0) this.#id = nanoid();
+    else this.#id = value;
+  }
+  set name(value) {
+    this.#name = value;
+  }
+  set email(value) {
+    if (User.isEmail(value)) {
+      this.#email = value;
+    } else {
+      throw new Error("email must be a valid email address");
     }
+  }
+  set password(value) {
+    this.#password = value;
+  }
 
-    notify(title, message) {
-        if (!(title instanceof String && message instanceof String))
-            return false;
+  isPassword(value) {
+    return this.#password === value;
+  }
 
-        // TODO: Send email; Needs HTML to be done probably.
-    }
+  notify() {
+    // send email to this.#email
+  }
 
-    static isEmail(str) {
-        const atIndex = str.indexOf("@");
-        const dotIndex = str.lastIndexOf(".");
-        return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < str.length - 1;
-    }
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      password: this.password,
+    };
+  }
+
+  static isEmail(str) {
+    const atIndex = str.indexOf("@");
+    const dotIndex = str.lastIndexOf(".");
+    return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < str.length - 1;
+  }
 }

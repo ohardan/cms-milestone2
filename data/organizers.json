@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Osama",
+    "email": "os@g.co",
+    "password": "123",
+    "conferencesIDs": ["12584689"]
+  }
+]

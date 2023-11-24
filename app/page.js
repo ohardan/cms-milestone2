@@ -1,5 +1,7 @@
-import { redirect } from "next/navigation";
-
 export default function Home() {
-  redirect('/view/home.html')
+  return (
+    <>
+      <p className="text-7xl">Nothing</p>
+    </>
+  );
 }

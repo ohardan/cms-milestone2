@@ -1,20 +1,33 @@
-class Reviewer extends User {
-    #experties;
-    #papers = [];
+import User from "./user";
 
-    constructor(experties) {
-        this.setExperties(experties);
-    }
+export default class Reviewer extends User {
+  #experties;
+  #papers;
 
-    getExperties(experties) {
-        return this.#experties;
-    }
+  constructor(id, name, email, password, experties) {
+    super(id, name, email, password);
+    this.experties = experties;
+    this.#papers = [];
+  }
 
-    setExperties(experties) {
-        if (experties instanceof String) {
-            this.#experties = experties;
-            return true;
-        }
-        return false;
-    }
+  get experties() {
+    return this.#experties;
+  }
+
+  get papers() {
+    return this.#papers;
+  }
+
+  set experties(value) {
+    this.#experties = value;
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      experties: this.experties,
+    };
+  }
 }

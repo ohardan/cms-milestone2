@@ -1,19 +1,47 @@
-class Venue {
-    #address
+export default class Venue {
+  #venueId;
+  #name;
+  #address;
 
-    constructor(address) {
-        this.setAddress(address);
-    }
+  constructor(venueId, name, address) {
+    this.venueId = venueId;
+    this.name = name;
+    this.address = address;
+  }
 
-    getAddress() {
-        return this.#address;
-    }
+  get venueId() {
+    return this.#venueId;
+  }
 
-    setAddress(value) {
-        if (value instanceof String) {
-            this.#address = value;
-            return true;
-        }
-        return false;
+  get name() {
+    return this.#name;
+  }
+
+  get address() {
+    return this.#address;
+  }
+
+  set venueId(value) {
+    this.#venueId = value;
+  }
+
+  set name(value) {
+    this.#name = value;
+  }
+
+  set address(value) {
+    if (value instanceof String) {
+      this.#address = value;
+      return true;
     }
+    return false;
+  }
+
+  toJSON() {
+    return {
+      venueId: this.venueId,
+      name: this.name,
+      address: this.address,
+    };
+  }
 }
