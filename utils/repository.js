@@ -2,10 +2,10 @@ import cms from "@/public/model/conferences_manager";
 import * as cast from "@/utils/cast";
 import { promises as fs } from "fs";
 
-const ORGANIZERS_PATH = "data/organizers.json";
-const REVIEWERS_PATH = "data/reviewers.json";
-const CONFERENCES_PATH = "data/conferences.json";
-const VENUES_PATH = "data/venues.json";
+const ORGANIZERS_PATH = process.cwd() + "/data/organizers.json";
+const REVIEWERS_PATH = process.cwd() + "/data/reviewers.json";
+const CONFERENCES_PATH = process.cwd() + "/data/conferences.json";
+const VENUES_PATH = process.cwd() + "/data/venues.json";
 
 class Repository {
   constructor() {
@@ -109,11 +109,11 @@ class Repository {
         .find((o) => o.id === conference.organizerId);
 
       conf.addDates(conference.dates.map((d) => new Date(d)));
-      
+
       conference.reviewers.forEach((r) => {
         conf.addReviewer(cms.getReviewers().find((r2) => r2.id === r.id));
       });
-      
+
       conf.addVenues(
         cms
           .getVenues()
@@ -121,15 +121,15 @@ class Repository {
             conference.venues.map((v2) => v2.venueId).includes(v.venueId)
           )
       );
-      
+
       cms.addConference(conf);
-      
+
       cms
         .getOrganizers()
         .find((o) => o.id === conf.organizer.id)
         .addConferenceID(conf.confCode);
-      
-        return { error: 0, payload: conf };
+
+      return { error: 0, payload: conf };
     } catch (error) {
       return { error: 1, message: "data error" };
     }
