@@ -86,7 +86,7 @@ class Repository {
       await fs.writeFile(ORGANIZERS_PATH, JSON.stringify(cms.getOrganizers()));
       return { error: 0, payload: organizer.toJSON() };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -101,7 +101,7 @@ class Repository {
       await fs.writeFile(ORGANIZERS_PATH, JSON.stringify(cms.getOrganizers()));
       return { error: 0, payload: organizer.toJSON() };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -123,7 +123,7 @@ class Repository {
         };
       }
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
     return { error: 1, message: "invalid login" };
   }
@@ -193,7 +193,7 @@ class Repository {
       await fs.writeFile(CONFERENCES_PATH, JSON.stringify(confs));
       return { error: 0, payload: conf.toJSON() };
     } catch (error) {
-      return { error: 1, message: "hahah, data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -206,7 +206,7 @@ class Repository {
       }
       return { error: 2, message: "not found" };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -229,7 +229,7 @@ class Repository {
 
       return { error: 2, message: "organizer not found" };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, mesaage: error.message };
     }
   }
 
@@ -242,7 +242,7 @@ class Repository {
       await fs.writeFile(REVIEWERS_PATH, JSON.stringify(cms.getReviewers()));
       return { error: 0, payload: reviewer };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -258,7 +258,7 @@ class Repository {
       }
       return { error: 2, message: "not found" };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -272,7 +272,7 @@ class Repository {
       reviewer.notify(message);
       await fs.writeFile(REVIEWERS_PATH, JSON.stringify(cms.getReviewers()));
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 
@@ -285,7 +285,7 @@ class Repository {
       await fs.writeFile(VENUES_PATH, JSON.stringify(cms.getVenues()));
       return { error: 0, payload: venue };
     } catch (error) {
-      return { error: 1, message: "data error" };
+      return { error: 1, message: error.message };
     }
   }
 }
