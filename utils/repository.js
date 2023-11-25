@@ -7,10 +7,10 @@ import * as cast from "@/utils/cast";
 import { promises as fs } from "fs";
 import { nanoid } from "nanoid";
 
-const ORGANIZERS_PATH = process.cwd() + "/data/organizers.json";
-const REVIEWERS_PATH = process.cwd() + "/data/reviewers.json";
-const CONFERENCES_PATH = process.cwd() + "/data/conferences.json";
-const VENUES_PATH = process.cwd() + "/data/venues.json";
+const ORGANIZERS_PATH = process.cwd() + "/public/data/organizers.json";
+const REVIEWERS_PATH = process.cwd() + "/public/data/reviewers.json";
+const CONFERENCES_PATH = process.cwd() + "/public/data/conferences.json";
+const VENUES_PATH = process.cwd() + "/public/data/venues.json";
 
 class Repository {
   constructor() {
