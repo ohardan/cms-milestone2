@@ -22,19 +22,25 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
-      <Link href={`/forms/register-conference?organizerId=${user?.id}`}>
-        Register New Conference
-      </Link>
-      <p className="text-7xl">Dashboard</p>
+    <main className="flex flex-col items-center gap-6 m-12">
+      <h1 className="text-5xl">Dashboard</h1>
+
+      <div className=" flex justify-between items-center w-full p-4">
+        <h2 className="text-3xl">My Conferences:</h2>
+        <Link
+          href="/forms/register-conference"
+          className="text-xl border-2 px-3 py-1 bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-slate-200 transition-colors duration-100 cursor-pointer">
+          Register Conference
+        </Link>
+      </div>
       <Conferences conferences={conferences} />
-    </>
+    </main>
   );
 }
 
 function Conferences({ conferences }) {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="flex flex-col gap-4">
       {conferences.map((conference) => (
         <Conference conference={conference} />
       ))}
@@ -43,5 +49,10 @@ function Conferences({ conferences }) {
 }
 
 function Conference({ conference }) {
-  return <div>{conference.name}</div>;
+  return (
+    <div className="flex flex-col gap-2 border rounded-lg w-[500px] px-4 pb-4">
+      <h3 className="text-2xl text-center border-b p-2">{conference.name}</h3>
+      <p className="text-lg">Organizer Name: {conference.organizer.name}</p>
+    </div>
+  );
 }

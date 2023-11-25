@@ -17,7 +17,7 @@ export default function Header({ user, setUser, formPage }) {
           user={user}
           setUser={setUser}
           className={
-            "text-2xl border-2 px-3 py-1 bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-slate-200"
+            "text-2xl border-2 px-3 py-1 bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-slate-200 transition-colors duration-100"
           }
         />
       )}

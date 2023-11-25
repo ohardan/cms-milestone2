@@ -1,25 +1,25 @@
 import User from "./user";
 
 export default class Reviewer extends User {
-  #experties;
+  #expertise;
   #papers;
 
-  constructor(id, name, email, password, experties) {
+  constructor(id, name, email, password, expertise) {
     super(id, name, email, password);
-    this.experties = experties;
+    this.expertise = expertise;
     this.#papers = [];
   }
 
-  get experties() {
-    return this.#experties;
+  get expertise() {
+    return this.#expertise;
   }
 
   get papers() {
     return this.#papers;
   }
 
-  set experties(value) {
-    this.#experties = value;
+  set expertise(value) {
+    this.#expertise = value;
   }
 
   toJSON() {
@@ -27,7 +27,7 @@ export default class Reviewer extends User {
       id: this.id,
       name: this.name,
       email: this.email,
-      experties: this.experties,
+      expertise: this.expertise,
     };
   }
 }

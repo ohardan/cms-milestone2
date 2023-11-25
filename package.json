@@ -10,6 +10,7 @@
     "test": "mocha **/*.spec.js"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "chai": "^4.3.10",
     "next": "14.0.2",
     "react": "^18",
