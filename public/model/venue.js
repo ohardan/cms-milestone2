@@ -30,11 +30,7 @@ export default class Venue {
   }
 
   set address(value) {
-    if (value instanceof String) {
-      this.#address = value;
-      return true;
-    }
-    return false;
+    this.#address = value;
   }
 
   toJSON() {

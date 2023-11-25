@@ -1,8 +1,6 @@
 "use client";
 import { createConferenceAction } from "@/app/actions";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   DeleteOutlined,
@@ -10,10 +8,13 @@ import {
   PlusCircleFilled,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function RegisterConference() {
-  const searchParams = useSearchParams();
-  const organizerId = searchParams.get("organizerId");
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    setUserId(JSON.parse(localStorage.getItem("user")).id);
+  }, []);
 
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -27,7 +28,7 @@ export default function RegisterConference() {
   const [venuesCount, setVenuesCount] = useState(0);
   useEffect(() => setVenuesCount(venuesList.length), [venuesList]);
 
-  const [dates, setDates] = useState([]);
+  const [dates, setDates] = useState([""]);
   const [datesCount, setDatesCount] = useState(0);
   useEffect(() => setDatesCount(dates.length), [dates]);
 
@@ -36,21 +37,20 @@ export default function RegisterConference() {
       <h1 className="text-5xl">Register A New Conference</h1>
       <form
         action={async (formdata) => {
-          createConferenceAction(formdata).then((result) => {
-            if (result.error === 0) {
-              setErrorMsg("");
-              redirect("/dashboard");
-            } else {
-              setErrorMsg(result.message);
-            }
-          });
+          const result = await createConferenceAction(formdata);
+          if (result.error === 0) {
+            setErrorMsg("");
+            redirect("/dashboard");
+          } else {
+            setErrorMsg(result.message);
+          }
         }}
         className="flex flex-col items-center text-xl gap-6">
         <input
           hidden
           readOnly
           name="organizerId"
-          value={organizerId}
+          value={userId}
         />
 
         <input
@@ -83,7 +83,8 @@ export default function RegisterConference() {
             </label>
             <input
               type="text"
-              name="name"
+              name="conferenceName"
+              value={undefined}
               id="name"
               required
               className="w-[600px] outline-transparent bg-slate-200 text-gray-900 p-1 border-b-[3px]"
@@ -105,16 +106,28 @@ export default function RegisterConference() {
             </div>
             <div className="flex flex-col gap-2">
               {dates.map((date, index) => {
-                const dateObj = new Date(date);
+                const dateobj = new Date(date);
+                const fdate = `${dateobj.getFullYear()}-${
+                  dateobj.getMonth() + 1 < 10
+                    ? "0" + (dateobj.getMonth() + 1)
+                    : dateobj.getMonth() + 1
+                }-${
+                  dateobj.getDate() < 10
+                    ? "0" + dateobj.getDate()
+                    : dateobj.getDate()
+                }`;
                 return (
-                  <div className="flex items-center justify-between">
-                    <DatePicker
-                      key={index}
-                      selected={dateObj}
+                  <div
+                    className="flex items-center justify-between"
+                    key={index}>
+                    <input
+                      value={fdate}
+                      type="date"
+                      name={"date" + index}
                       className="w-[300px] outline-transparent bg-slate-200 text-gray-900 p-1 border-b-[3px]"
-                      onChange={(date) => {
+                      onChange={(e) => {
                         setDates((curr) => {
-                          curr[index] = date.toJSON();
+                          curr[index] = e.target.valueAsDate.toJSON();
                           return [...curr];
                         });
                       }}
@@ -221,11 +234,11 @@ function ReviewerCard({ index, reviewer, setReviewersList }) {
     <div className="grid place-items-center gap-1 bg-slate-500 rounded-md text-base w-[250px] p-2">
       <h3 className="text-lg font-medium">Reviewer {index + 1}</h3>
 
-      <label htmlFor="name">Name</label>
+      <label htmlFor="reviewerName">Name</label>
       <input
         type="text"
-        id="name"
-        name={"name" + index}
+        id="reviewerName"
+        name={"reviewerName" + index}
         required
         className={textInput}
         value={reviewer.name}
@@ -237,11 +250,11 @@ function ReviewerCard({ index, reviewer, setReviewersList }) {
         }}
       />
 
-      <label htmlFor="email">Email</label>
+      <label htmlFor="reviewerEmail">Email</label>
       <input
         type="email"
-        id="email"
-        name={"email" + index}
+        id="reviewerEmail"
+        name={"reviewerEmail" + index}
         required
         className={`${textInput} valid:border-green-700`}
         value={reviewer.email}
@@ -253,11 +266,11 @@ function ReviewerCard({ index, reviewer, setReviewersList }) {
         }}
       />
 
-      <label htmlFor="expertise">Expertise</label>
+      <label htmlFor="reviewerExperties">Expertise</label>
       <input
         type="text"
-        id="expertise"
-        name={"expertise" + index}
+        id="reviewerExperties"
+        name={"reviewerExperties" + index}
         required
         className={textInput}
         value={reviewer.expertise}
@@ -288,11 +301,11 @@ function VenueCard({ index, venue, setVenuesList }) {
     <div className="grid place-items-center gap-1 bg-slate-500 rounded-md text-base w-[250px] p-2">
       <h3 className="text-lg font-medium">Venue {index + 1}</h3>
 
-      <label htmlFor="name">Name</label>
+      <label htmlFor="venueName">Name</label>
       <input
         type="text"
-        id="name"
-        name={"name" + index}
+        id="venueName"
+        name={"venueName" + index}
         required
         className={textInput}
         value={venue.name}
@@ -304,11 +317,11 @@ function VenueCard({ index, venue, setVenuesList }) {
         }}
       />
 
-      <label htmlFor="address">Address</label>
+      <label htmlFor="venueAddress">Address</label>
       <input
         type="text"
-        id="address"
-        name={"address" + index}
+        id="venueAddress"
+        name={"venueAddress" + index}
         required
         className={textInput}
         value={venue.address}

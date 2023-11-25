@@ -42,9 +42,7 @@ class ConferencesManager {
   }
 
   conferenceExists(conference_name) {
-    return this.#conferences
-      .map((conf) => conf.getName)
-      .includes(conference_name);
+    return this.#conferences.map((conf) => conf.name).includes(conference_name);
   }
 
   clear() {

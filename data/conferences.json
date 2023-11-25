@@ -1,15 +1,1 @@
-[
-  {
-    "confCode": "12584689",
-    "organizer": {
-      "id": 1,
-      "name": "Osama",
-      "email": "os@g.co",
-      "password": "123"
-    },
-    "name": "jajaj",
-    "dates": ["2023-11-30T00:00:00.000Z", "2023-12-01T00:00:00.000Z"],
-    "reviewers": [],
-    "venues": []
-  }
-]
+[]

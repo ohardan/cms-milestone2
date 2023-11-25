@@ -25,6 +25,7 @@ export default class Organizer extends User {
       id: this.id,
       name: this.name,
       email: this.email,
+      password: this.password,
       conferencesIDs: this.conferencesIDs,
     };
   }

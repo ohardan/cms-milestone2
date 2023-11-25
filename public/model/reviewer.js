@@ -28,6 +28,7 @@ export default class Reviewer extends User {
       name: this.name,
       email: this.email,
       expertise: this.expertise,
+      notifications: this.notifications,
     };
   }
 }

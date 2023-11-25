@@ -5,12 +5,14 @@ export default class User {
   #name;
   #email;
   #password;
+  #notifications;
 
   constructor(id, name, email, password) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
+    this.#notifications = [];
   }
 
   get id() {
@@ -26,6 +28,10 @@ export default class User {
     return this.#password;
   }
 
+  get notifications() {
+    return this.#notifications;
+  }
+
   set id(value) {
     if (value === 0) this.#id = nanoid();
     else this.#id = value;
@@ -34,22 +40,22 @@ export default class User {
     this.#name = value;
   }
   set email(value) {
-    if (User.isEmail(value)) {
-      this.#email = value;
-    } else {
-      throw new Error("email must be a valid email address");
-    }
+    this.#email = value;
   }
   set password(value) {
     this.#password = value;
+  }
+
+  set notifications(value) {
+    this.#notifications = value;
   }
 
   isPassword(value) {
     return this.#password === value;
   }
 
-  notify() {
-    // send email to this.#email
+  notify(message) {
+    this.#notifications.push({ timestamp: new Date(), message: message });
   }
 
   toJSON() {
@@ -58,12 +64,7 @@ export default class User {
       name: this.name,
       email: this.email,
       password: this.password,
+      notifications: this.notifications,
     };
-  }
-
-  static isEmail(str) {
-    const atIndex = str.indexOf("@");
-    const dotIndex = str.lastIndexOf(".");
-    return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < str.length - 1;
   }
 }

@@ -24,8 +24,9 @@ export function castReviewer(object) {
     object.name,
     object.email,
     object.password,
-    object.experties
+    object.expertise,
   );
+  reviewer.notifications = object.notifications;
 
   return reviewer;
 }

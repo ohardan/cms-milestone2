@@ -41,8 +41,11 @@ export default function Dashboard() {
 function Conferences({ conferences }) {
   return (
     <div className="flex flex-col gap-4">
-      {conferences.map((conference) => (
-        <Conference conference={conference} />
+      {conferences.map((conference, index) => (
+        <Conference
+          conference={conference}
+          key={index}
+        />
       ))}
     </div>
   );
