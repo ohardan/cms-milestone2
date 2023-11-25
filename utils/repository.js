@@ -17,6 +17,7 @@ class Repository {
 
   async init() {
     try {
+      cms.clear();
       const data4 = await fs.readFile(VENUES_PATH);
       const venues = JSON.parse(data4);
       venues.forEach((venue) => {
@@ -72,6 +73,7 @@ class Repository {
   }
 
   async authenticateOrganizer(email, password) {
+    await this.init();
     try {
       let organizers = cms.getOrganizers();
 
@@ -95,6 +97,110 @@ class Repository {
       return { error: 1, message: "data error" };
     }
     return { error: 1, message: "invalid login" };
+  }
+
+  async createConference(conference) {
+    await this.init();
+    try {
+      const conf = cast.castConference(conference);
+
+      conf.organizer = cms
+        .getOrganizers()
+        .find((o) => o.id === conference.organizerId);
+
+      conf.addDates(conference.dates.map((d) => new Date(d)));
+      
+      conference.reviewers.forEach((r) => {
+        conf.addReviewer(cms.getReviewers().find((r2) => r2.id === r.id));
+      });
+      
+      conf.addVenues(
+        cms
+          .getVenues()
+          .filter((v) =>
+            conference.venues.map((v2) => v2.venueId).includes(v.venueId)
+          )
+      );
+      
+      cms.addConference(conf);
+      
+      cms
+        .getOrganizers()
+        .find((o) => o.id === conf.organizer.id)
+        .addConferenceID(conf.confCode);
+      
+        return { error: 0, payload: conf };
+    } catch (error) {
+      return { error: 1, message: "data error" };
+    }
+  }
+
+  async readConference(confCode) {
+    await this.init();
+    try {
+      const conf = cms.getConferences().find((c) => c.confCode === confCode);
+      if (conf) {
+        return { error: 0, payload: conf };
+      }
+      return { error: 2, message: "not found" };
+    } catch (error) {
+      return { error: 1, message: "data error" };
+    }
+  }
+
+  async readConferences(organizerId) {
+    await this.init();
+    try {
+      let conferences = cms.getConferences();
+      conferences = conferences.map((conf) => conf.toJSON());
+
+      if (!organizerId) {
+        return { error: 0, payload: conferences };
+      }
+
+      const organizer = cms.getOrganizers().find((o) => o.id === organizerId);
+      if (organizer)
+        return {
+          error: 0,
+          payload: conferences.filter((c) => c.organizer.id === organizerId),
+        };
+
+      return { error: 2, message: "organizer not found" };
+    } catch (error) {
+      return { error: 1, message: "data error" };
+    }
+  }
+
+  #readReviewer(email) {
+    try {
+      const reviewer = cms.getReviewers().find((r) => r.email === email);
+      if (reviewer) {
+        return {
+          error: 0,
+          payload: {
+            id: reviewer.id,
+            name: reviewer.name,
+            email: reviewer.email,
+            expertise: reviewer.expertise,
+          },
+        };
+      }
+      return { error: 2, message: "not found" };
+    } catch (error) {
+      return { error: 1, message: "data error" };
+    }
+  }
+
+  #notifyReviewer(reviewerId, message) {
+    try {
+      const reviewer = cms.getReviewers().find((r) => r.id === reviewerId);
+      if (!reviewer) {
+        return { error: 2, message: "not found" };
+      }
+      reviewer.notify(message);
+    } catch (error) {
+      return { error: 1, message: "data error" };
+    }
   }
 }
 

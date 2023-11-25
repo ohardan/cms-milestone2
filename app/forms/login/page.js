@@ -18,7 +18,7 @@ export default function Login() {
           const result = await loginAction(formdata);
           if (result.error === 0) {
             localStorage.setItem("user", JSON.stringify(result.payload));
-            redirect("/pages/register-conference/");
+            redirect("/dashboard");
           }
           setErrorMsg(result.message);
         }}>

@@ -144,11 +144,11 @@ export default class Conference {
   toJSON() {
     return {
       confCode: this.confCode,
-      organizer: this.organizer,
+      organizer: this.organizer.toJSON(),
       name: this.name,
-      dates: this.dates,
-      reviewers: this.reviewers,
-      venues: this.venues,
+      dates: this.dates.map((d) => d.toJSON()),
+      reviewers: this.reviewers.map((r) => r.toJSON()),
+      venues: this.venues.map((v) => v.toJSON()),
     };
   }
 }

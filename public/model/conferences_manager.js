@@ -46,6 +46,13 @@ class ConferencesManager {
       .map((conf) => conf.getName)
       .includes(conference_name);
   }
+
+  clear() {
+    this.#organizers = [];
+    this.#reviewers = [];
+    this.#conferences = [];
+    this.#venues = [];
+  }
 }
 
 const cms = new ConferencesManager();

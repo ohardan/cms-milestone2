@@ -5,5 +5,12 @@
     "email": "os@g.co",
     "password": "123",
     "conferencesIDs": ["12584689"]
+  },
+  {
+    "id": 2,
+    "name": "Ahmed",
+    "email": "ah@g.co",
+    "password": "123",
+    "conferencesIDs": []
   }
 ]

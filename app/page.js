@@ -1,7 +1,12 @@
+"use client";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Home() {
-  return (
-    <>
-      <p className="text-7xl">Nothing</p>
-    </>
-  );
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) redirect("/dashboard");
+    else redirect("/forms/login");
+  }, []);
 }
