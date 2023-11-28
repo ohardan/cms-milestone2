@@ -1,7 +1,7 @@
-import Organizer from "@/public/model/organizer";
-import Reviewer from "@/public/model/reviewer";
-import Conference from "@/public/model/conference";
-import Venue from "@/public/model/venue";
+import Organizer from "../public/model/organizer.js";
+import Reviewer from "../public/model/reviewer.js";
+import Conference from "../public/model/conference.js";
+import Venue from "../public/model/venue.js";
 
 export function castVenue(object) {
   return new Venue(object.venueId, object.name, object.address);
@@ -24,7 +24,7 @@ export function castReviewer(object) {
     object.name,
     object.email,
     object.password,
-    object.expertise,
+    object.expertise
   );
   reviewer.notifications = object.notifications;
 

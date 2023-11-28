@@ -2,6 +2,7 @@
   "name": "cms-milestone2",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +13,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "chai": "^4.3.10",
+    "chai-datetime": "^1.8.0",
     "next": "14.0.2",
     "react": "^18",
     "react-datepicker": "^4.23.0",

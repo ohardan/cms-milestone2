@@ -1,8 +1,8 @@
-import Reviewer from "./reviewer";
-import Venue from "./venue";
+import Reviewer from "./reviewer.js";
+import Venue from "./venue.js";
 import { nanoid } from "nanoid";
-import cms from "./conferences_manager";
-import Organizer from "./organizer";
+import cms from "./conferences_manager.js";
+import Organizer from "./organizer.js";
 
 export default class Conference {
   #confCode;
@@ -55,12 +55,7 @@ export default class Conference {
   }
 
   set name(name) {
-    if (cms.conferenceExists(name)) {
-      return false;
-    }
-
     this.#name = name;
-    return true;
   }
 
   addDate(date) {

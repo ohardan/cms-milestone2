@@ -1,4 +1,4 @@
-class ConferencesManager {
+export class ConferencesManager {
   #organizers;
   #reviewers;
   #conferences;
