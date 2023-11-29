@@ -2,9 +2,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { readConferencesAction } from "@/app/actions";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
+  const params = useSearchParams();
+  const alert = params.get("alert");
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [conferences, setConferences] = useState([]);
   const [user, setUser] = useState(null);
 
@@ -19,12 +22,23 @@ export default function Dashboard() {
         setConferences(result.payload);
       }
     });
+    if (alert) {
+      setIsAlertVisible(true);
+      setTimeout(() => {
+        setIsAlertVisible(false);
+      }, 1500);
+    }
   }, []);
 
   return (
     <main className="flex flex-col items-center gap-6 m-12">
       <h1 className="text-5xl">Dashboard</h1>
-
+      <p
+        className={`bg-green-600 bg-opacity-20 p-4 rounded-md border-green-400 border w-[500px] ${
+          !isAlertVisible ? "hidden" : ""
+        }`}>
+        Conference Created Successfully!
+      </p>
       <div className=" flex justify-between items-center w-full p-4">
         <h2 className="text-3xl">My Conferences:</h2>
         <Link
@@ -56,6 +70,29 @@ function Conference({ conference }) {
     <div className="flex flex-col gap-2 border rounded-lg w-[500px] px-4 pb-4">
       <h3 className="text-2xl text-center border-b p-2">{conference.name}</h3>
       <p className="text-lg">Organizer Name: {conference.organizer.name}</p>
+      <p className="text-lg">Venues:</p>
+      <ul className="list-inside list-none pl-4">
+        {conference.venues.map((venue, index) => (
+          <li key={index}>
+            {venue.name}, {venue.address}
+          </li>
+        ))}
+      </ul>
+
+      <p className="text-lg">Dates:</p>
+      <ul className="list-inside list-none pl-4">
+        {conference.dates.map((date, index) => {
+          date = new Date(date);
+          return <li key={index}>{date.toLocaleDateString()}</li>;
+        })}
+      </ul>
+
+      <p className="text-lg">Reviewers:</p>
+      <ul className="list-inside list-none pl-4">
+        {conference.reviewers.map((reviewer, index) => (
+          <li key={index}>{reviewer.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }

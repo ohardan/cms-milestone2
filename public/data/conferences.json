@@ -1,1 +1,111 @@
-[]
+[
+  {
+    "confCode": "-dNZJbFYh1OTAMBJ1Vgux",
+    "organizer": {
+      "id": "3DjZAlIfLB2QX3uEsZeTK",
+      "name": "Osama",
+      "email": "ohardan@gmail.com",
+      "password": "123456",
+      "conferencesIDs": [
+        "-dNZJbFYh1OTAMBJ1Vgux",
+        "8_O6W1I9TnuQ99zy9Wx1u",
+        "hM-0JXHyANy_yVAeOdloB",
+        "z-DCZHIO8vD1nK_ID7JKJ"
+      ]
+    },
+    "name": "Technology Conference",
+    "dates": [
+      "2023-12-07T00:00:00.000Z",
+      "2023-12-08T00:00:00.000Z",
+      "2023-12-09T00:00:00.000Z"
+    ],
+    "reviewers": [
+      {
+        "id": "SBkpe3EEvpguqiAsEFix5",
+        "name": "Ahmed",
+        "email": "ah@reviewer.com",
+        "expertise": "Prof of Computer Science",
+        "notifications": [
+          {
+            "timestamp": "2023-11-29T05:17:39.739Z",
+            "message": "You have been invited to review in Technology Conference"
+          }
+        ]
+      },
+      {
+        "id": "CCkCF-kJxmTACAs2httIb",
+        "name": "Ali",
+        "email": "ali@reviewer.com",
+        "expertise": "Researcher @ CEng",
+        "notifications": [
+          {
+            "timestamp": "2023-11-29T05:17:39.739Z",
+            "message": "You have been invited to review in Technology Conference"
+          }
+        ]
+      }
+    ],
+    "venues": [
+      {
+        "venueId": "0QzDAoOaivASBBugNfE5G",
+        "name": "H07",
+        "address": "Qatar University"
+      },
+      {
+        "venueId": "IDoN9A2UXNt9OFGYSGIAv",
+        "name": "H10",
+        "address": "Qatar University"
+      }
+    ]
+  },
+  {
+    "confCode": "8_O6W1I9TnuQ99zy9Wx1u",
+    "organizer": {
+      "id": "3DjZAlIfLB2QX3uEsZeTK",
+      "name": "Osama",
+      "email": "ohardan@gmail.com",
+      "password": "123456",
+      "conferencesIDs": [
+        "-dNZJbFYh1OTAMBJ1Vgux",
+        "8_O6W1I9TnuQ99zy9Wx1u",
+        "hM-0JXHyANy_yVAeOdloB",
+        "z-DCZHIO8vD1nK_ID7JKJ"
+      ]
+    },
+    "name": "Financial Conference",
+    "dates": ["2023-12-25T00:00:00.000Z", "2023-12-26T00:00:00.000Z"],
+    "reviewers": [
+      {
+        "id": "nwzp5auSW1hRwiEb-mArK",
+        "name": "Khalid",
+        "email": "kh@reviewer.com",
+        "expertise": "CEO of QNB",
+        "notifications": [
+          {
+            "timestamp": "2023-11-29T05:28:45.275Z",
+            "message": "You have been invited to review in Financial Conference"
+          }
+        ]
+      },
+      {
+        "id": "0V3sa-OLwXP7jQ50lBn6s",
+        "name": "Ibrahim",
+        "email": "ib@reviewer.com",
+        "expertise": "Prof of Finance",
+        "notifications": [
+          {
+            "timestamp": "2023-11-29T05:28:45.275Z",
+            "message": "You have been invited to review in Financial Conference"
+          }
+        ]
+      }
+    ],
+    "venues": [
+      {
+        "venueId": "zeYFU8d89JVYqwykb-pw-",
+        "name": "H08 College of Business ",
+        "address": "Qatar University"
+      }
+    ]
+  }
+]

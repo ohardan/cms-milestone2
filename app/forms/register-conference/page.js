@@ -40,7 +40,7 @@ export default function RegisterConference() {
           const result = await createConferenceAction(formdata);
           if (result.error === 0) {
             setErrorMsg("");
-            redirect("/dashboard");
+            redirect("/dashboard?alert=true");
           } else {
             setErrorMsg(result.message);
           }

@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "venueId": "0QzDAoOaivASBBugNfE5G",
+    "name": "H07",
+    "address": "Qatar University"
+  },
+  {
+    "venueId": "IDoN9A2UXNt9OFGYSGIAv",
+    "name": "H10",
+    "address": "Qatar University"
+  },
+  {
+    "venueId": "zeYFU8d89JVYqwykb-pw-",
+    "name": "H08 College of Business ",
+    "address": "Qatar University"
+  }
+]

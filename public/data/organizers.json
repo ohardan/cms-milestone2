@@ -1,1 +1,30 @@
-[{"id":"3DjZAlIfLB2QX3uEsZeTK","name":"Osama","email":"ohardan@gmail.com","password":"123456","conferencesIDs":[]},{"id":"UKUgkNXl6ObXwA7vWp3NG","name":"Marwan","email":"marwan@gmail.com","password":"123456","conferencesIDs":[]},{"id":"_UeAsJ7OrhoapfS2mTMHa","name":"Ibrahim","email":"ibrahim@gmail.com","password":"123456","conferencesIDs":[]},{"id":"l0DSMUIGEYNNWRyQlXAbO","name":"Asem","email":"asem@gmail.com","password":"123456","conferencesIDs":[]}]
+[
+  {
+    "id": "3DjZAlIfLB2QX3uEsZeTK",
+    "name": "Osama",
+    "email": "ohardan@gmail.com",
+    "password": "123456",
+    "conferencesIDs": ["-dNZJbFYh1OTAMBJ1Vgux", "8_O6W1I9TnuQ99zy9Wx1u"]
+  },
+  {
+    "id": "UKUgkNXl6ObXwA7vWp3NG",
+    "name": "Marwan",
+    "email": "marwan@gmail.com",
+    "password": "123456",
+    "conferencesIDs": []
+  },
+  {
+    "id": "_UeAsJ7OrhoapfS2mTMHa",
+    "name": "Ibrahim",
+    "email": "ibrahim@gmail.com",
+    "password": "123456",
+    "conferencesIDs": []
+  },
+  {
+    "id": "l0DSMUIGEYNNWRyQlXAbO",
+    "name": "Asem",
+    "email": "asem@gmail.com",
+    "password": "123456",
+    "conferencesIDs": []
+  }
+]
